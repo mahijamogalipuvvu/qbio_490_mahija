@@ -16,7 +16,8 @@ As good general practice to keep things organized, create an "analysis_data" fol
 Once the folder is created, set your working directory below:
 
 ```{r setup}
-    knitr::opts_knit$set(root.dir = normalizePath("/Users/mahijamogalipuvvu/Desktop/QBIO490/qbio_490_mahija/analysis_data")) 
+   knitr::opts_knit$set(root.dir = normalizePath("/Users/mahijamogalipuvvu/Desktop/QBIO490/qbio_490_mahija/analysis_data"))
+    getwd()
 ```
 
 Before you move on, go to your GitHub web browser, open your .gitignore, and make sure the following is added in. 
@@ -30,14 +31,14 @@ Before you move on, go to your GitHub web browser, open your .gitignore, and mak
 The loaded files from TCGA are quite large, so we don't want to push them to GitHub, it's also typically best to avoid putting raw data on GitHub.
 
 
-###### (2) Query and retrieve the TCGA breast cancer clinical data 
+###### (2) Query and the TCGA breast cancer clinical data 
 
 ```{r}
 library(BiocManager)
 library(TCGAbiolinks)
 library(maftools)
 clin_query <- GDCquery(project = "TCGA-BRCA", data.category = "Clinical",  file.type = "xml") 
-#GDCdownload(clin_query) 
+GDCdownload(clin_query) 
 clinic <- GDCprepare_clinic(clin_query,clinical.info = "patient")
 
 ```
