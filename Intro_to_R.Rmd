@@ -45,7 +45,7 @@ setwd() # (ex: "/Users/nicoleblack/Desktop/qbio_490_nicole/week3_R")
 
 ```{r setup Exercise 2.3}
     # replace path with the path to your qbio_490_name directory
-    knitr::opts_knit$set(root.dir = normalizePath("/PATH/TO/DIRECTORY")) 
+    knitr::opts_knit$set(root.dir = normalizePath("/Users/mahijamogalipuvvu/Desktop/QBIO490/qbio_490_mahija")) 
 ```
 
   Now that your environment is set up, let's get into coding!
@@ -61,7 +61,7 @@ var_vector <- c(3, 2, 1)
 
 ## Create a new variable my_var to store anything you choose:
 
-
+my_var <- "hi buddy"
 
 print(my_var)
 ```
@@ -77,21 +77,21 @@ na <- NA
 
 # Boolean Value is either true or false
 ## booleans can be defined in a variety of ways in R!
-true_var <-
-false_var <-
+true_var <- TRUE
+false_var <- FALSE
 
 ## numeric is a catch all for any number value in R
-negative <- 
-decimal <-
+negative <- -12
+decimal <- 0.12
 
 ## a string is any text value
 ## strings can be enclosed in single or double quote
-string_var <-
-char_var <-
+string_var <- "buddy"
+char_var <- "b"
 
 ## vectors contain data elements of the same data type
 ## they are declared by enclosing elements in c()
-vector <- c() 
+vector <- c("one", "two", "three") 
 
 ## a factor is a categorical variable
 ## a factor has data elements (defined like a vector) and categories (known also as levels), that are inferred from the data 
@@ -122,7 +122,11 @@ SUMOFAGES <- sum(numeric_vector)
   Create four variables named 'name', 'age', 'birthday' (in a MM/DD/YYYY format), and 'three_fav_colors'. Print by writing out the name of each variable. What data types are these (use typeof() to validate)?
 
 ```{r Exercise 3.4}
-## add code here!
+name <- "mahija"
+age <- 18
+birthday <- "09/12/2004"
+three_fav_colors <- c("lightpink", "lightblue", "purple")
+
 ```
 
 ###### (4) Functions
@@ -153,8 +157,11 @@ max_value
 ```{r Exercise 4.2}
 list_of_numbers <- c(1, 1, 2, 3, 5, 8, 13, 21)
 
-## call functions here
-
+sum(list_of_numbers)
+min(list_of_numbers)
+mean(list_of_numbers)
+mode(list_of_numbers)
+summary(list_of_numbers)
 
 ```
 
@@ -179,14 +186,14 @@ list_of_numbers <- c(1, 1, 2, 3, 5, 8, 13, 21)
   Predict what each statement will evaluate to:
 
 ```{r Exercise 5.2}
-"cat" == "cat" & "dog" == "dog" # prediction: 
-"cat" == "cat" & "fish" == "hamster" # prediction: 
+"cat" == "cat" & "dog" == "dog" # prediction: true
+"cat" == "cat" & "fish" == "hamster" # prediction: false
 
-1 < 2 | 3 < 1 # prediction: 
-1 < 2 | 3 < 5 # prediction: 
+1 < 2 | 3 < 1 # prediction: true
+1 < 2 | 3 < 5 # prediction: true
 
 "blue" %in% c("yellow", "red", "blue") &! "happy" %in% c("sad", "angry")
-# prediction: 
+# prediction: true
 ```
 
   "If" statements (along with "else if" and "else" statements) are the most simple control flows to write, and they are also what we will use the majority of the time.
@@ -194,12 +201,12 @@ list_of_numbers <- c(1, 1, 2, 3, 5, 8, 13, 21)
   The syntax for "if", "else if", and "else" statements is as follows. Fill in possible conditions and actions so that the "if" statement is skipped, and the "else if" runs, printing out "Success!". Run the block to test.
 
 ```{r Exercise 5.3}
-if (condition) {
-  # action
-} else if (condition) {
-  # action
+if (3 > 5) {
+  print("ERROR")
+} else if (5 > 3) {
+  print("SUCCESS")
 } else {
-  # action
+  print("ERROR")
 }
 ```
 
@@ -237,6 +244,7 @@ if (7.5 %in% new_list) {
 } else {
   print("G")
 }
+#prediction: D, E
 ```
 
 ###### (6) Loops
@@ -268,10 +276,13 @@ while (i < 10) {
 x = 0
 my_list <- c(1, 10, x)
 mean <- mean(my_list)
-while (condition) {
-  # do something
-  # update condition
+while (mean < 10) {
+   x = x + 1
+   my_list <- c(1, 10, x)
+   mean <- mean(my_list)
+   print(mean)
 }
+
 ```
 
   The other type of commonly used loop is a for loop. In R and Python, you can think of a for loop as doing something for each element in some list. The syntax is as follows:
@@ -297,6 +308,11 @@ for (element in list) { # note that I can call "element" whatever I want, it lik
 ```{r Exercise 6.6}
 list <- c(1, 5, 20, 0)
 
+for(i in list) {
+  print(i ^ 3)
+}
+  
+
 # write loop here
 ```
 
@@ -311,8 +327,8 @@ for (i in 1:10) {
   Use this syntax to print all numbers between -7 and 7.
 
 ```{r Exercise 6.8}
-# write loop here
-
+for (i in -7:7)
+  print(i)
 ```
 
   VERY IMPORTANT NOTE: In R, we generally want to avoid using loops since they are fairly slow and because R is already optimized for repeating actions on any lists/vectors. However, there are certain instances where loops must be used, so if you absolutely cannot think of any other solution, a loop is always a good backup.
@@ -421,15 +437,15 @@ We can view a singular column with the notation: df_name$row_name
 Use this syntax to view the mpg column of the mtcars data frame.
 
 ```{r Exercise 8.4}
-# add code here
+mtcars$mpg
 ```
 
 What if we want to view a column, but don't know it's exact name? We can get all column names (or all row names) by using the functions colnames() and rownames(). Call those below, then view the carburetor column using dollar sign notation.
 
 ```{r Exercise 8.5}
-# call functions here
-
-mtcars$ # fill in name of carburetor column here
+colnames(mtcars)
+rownames(mtcars)
+mtcars$carb # fill in name of carburetor column here
 ```
 
 We can also view particular subsets of the data frame by using the df[row, column] notation.
@@ -451,7 +467,7 @@ mtcars[ , c(-(1:4), -6)] # access everything EXCEPT columns 1 through 4 and colu
 Select the horse power data for the Duster 360, Lincoln Continental, and Maserati Bora. Instead of manually viewing the matrix to determine which rows and column numbers you want to specify, use rownames() and colnames().
 
 ```{r Exercise 8.7}
-# write code here
+mtcars[c(7, 16, 31), 4]
 ```
 
 ###### (9) Editing data frames
@@ -471,7 +487,7 @@ Create a new column called "transmission" that assigns the value "automatic" whe
 You can use an ifelse statement to assign your values! Remember, ifelse() takes in three arguments: ifelse(test_condition, yes, no)
 
 ```{r Exercise 9.2}
-# write code here
+mtcars$transmission <-ifelse(mtcars$am == 1, "manual", "automatic")
 ```
 
 Now that we have the "transmission" column, the "am" column is no longer particularly useful. Let's delete it.
@@ -487,13 +503,14 @@ df_copy <- df[rows_to_keep, columns_to_keep]
 Use the above syntax to save a copy of the mtcars data without the "am" column. Remember to use colnames() to find the column number of "am". Also recall that to select row/columns to drop (hence selecting everything else), you can use "-index #".
 
 ```{r Exercise 9.4}
-# write code here
+colnames(mtcars)
+mtcars_copy <- mtcars[ , -9]
 ```
 
 View your new mtcars copy data frame to check that the "am" column was dropped.
 
 ```{r Exercise 9.5}
-# write code here
+mtcars_copy
 ```
 
 
@@ -524,7 +541,7 @@ library(package) # you need to load in a package in every file that uses it (it'
   Try this out on the is.na() function (you'll need this in your homework)
 
 ```{r}
-# write code here
+is.na(mtcars)
 ```
 
 ###### (12) Further Practice
